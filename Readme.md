@@ -1,7 +1,9 @@
-#React with Firebase (Cloud Firestore) 
+# React with Firebase (Cloud Firestore) 
 
 
-# Developed the application in a code along workshop with Steven Kinney at Front End Masters
+# Note:
+
+Developed the application in a code along workshop with Steven Kinney at Front End Masters
 
 
 
