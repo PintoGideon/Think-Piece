@@ -24,25 +24,28 @@ firestore.collection('posts').orderBy('createdAt','desc');
 
 
 # Configuring the Firebase
- ...
+ ```
+ 
  import firebase from 'firebase/app'
- ...
+ 
+ ```
   This gives you just the barebone minimum to    get started
-
+```
   import 'firebase/firestore'
-
   export const firestore=firebase.firestore();
   export default firebase;
+  
+```
 
 # Aside- 
 We should never fetch any data in render method, as render is a pure function and calling APIs here may cause side effects. There is another lifecycle method that is a perfect match to fetch data: componentDidMount(). When this method runs, the component was already rendered once with the render() method, but it would render again when the fetched data would be stored in the local state of the component with setState(). Afterward, the local state could be used in the render() method to display it or to pass it down as props.
 
-
+```
  componentDidMount=async()=>{
      const posts=await firestore.collection('posts').get();
  }
 
-
+```
 
 
 # QuerySnapshot Properties
@@ -60,26 +63,29 @@ We should never fetch any data in render method, as render is a pure function an
     
  # Adding a New Post
 
-
+```
  const docRef= await firestore.collection('posts').add(post)
-
  const doc=await docRef.get()
 
  const newPost={
      id:doc.id,
      ...doc.data()
  }
+ 
+```
 
 # Deleting a Post
-
+```
 await firestore.doc(`posts/${id}`).delete();
 
+```
 
 # As the application grows, you want to update the UI as soon as the database changes.
 
     Instead of using get() which will get you the data each time, we will
     use onSnapshot.
 
+```
     firestore.collection('posts').onSnapshot(snapshot=>{
       const posts=snapshot.docs.map(doc=>({
           id:doc.id,
@@ -90,9 +96,11 @@ await firestore.doc(`posts/${id}`).delete();
 
     })
 
- 
+ ```
 
 # Cloud Firestore rules always follow this structure
+
+```
 
 service cloud.firestore{
 match /databases/{database}/documents {
@@ -112,6 +120,7 @@ service cloud.firestore {
   }
 }
 
+```
 resource.data will have the fields on the document as it is stored in Firebase
 
 request.resource.data will have the incoming 
@@ -121,26 +130,33 @@ document
 # Authentication
 
 # Signup
+```
 
 firebase.auth().createUserWithEmailAndPassword(email,password).catch(error=>{
 console.error("Error")
 })
 
+```
+
 # SignIn
+```
 
 firebase.auth().signInWithEmailAndPassword(email,password).catch(error=>{
 console.error("Error");
 
 })
 
-
 this.unsubscribeFromAuth=auth.onAuthStateChanged(user=>{
     this.setState({user})
 })
 
+```
+
 
 
 # SignOut
+
+```
 
 firebase.auth().signOut().the(function(){
 //Sign out successfull
@@ -149,6 +165,8 @@ firebase.auth().signOut().the(function(){
 //An Error occurred
 
 });
+
+```
 
 # Creating Documents
 
@@ -185,45 +203,64 @@ If you've used the Firebase Realtime Database, these paths may seem very familia
 In order to upload or download files, delete files, or get or update metadata, you must create a reference to the file you want to operate on. A reference can be thought of as a pointer to a file in the cloud. References are lightweight, so you can create as many as you need, and they are also reusable for multiple operations.
 
 You can create a reference to a location lower in the tree, say 'images/space.jpg' by using the child() method.
+```
 
 var imagesRef=storageRef.child('images');
 
+```
 # Points to the root reference
+```
 var storageRef = firebase.storage().ref();
 
+```
 # Points to 'images'
+```
 var imagesRef = storageRef.child('images');
 
+```
 # Points to 'images/space.jpg'
 # Note that you can use variables to create child values
+
+```
 var fileName = 'space.jpg';
 var spaceRef = imagesRef.child(fileName);
 
+```
 # File path is 'images/space.jpg'
+```
 var path = spaceRef.fullPath
 
+```
 # File name is 'space.jpg'
+
+```
 var name = spaceRef.name
 
+```
 # Points to 'images'
+
+```
 var imagesRef = spaceRef.parent;
 
+```
 React has a higher order component called withRouter that will take all of
 this route information and pass it in as props to the given component
 
 
 # Deploying with the Firebase CLI
+``` Node.js
 
 npm install -g firebase-tools firebase-admin
 firebase login
 
 firebase init
 
+
 # Cloud Functions
 
 npm install firebase-functions@latest firebase-admin@latest --save
 
-
+```
 
 
 
