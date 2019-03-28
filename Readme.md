@@ -1,4 +1,10 @@
-#React with Firebase (Cloud Firestore)
+#React with Firebase (Cloud Firestore) 
+
+
+# Link to the app deployed on Cloud Firestore:
+  https://think-piece-6bd12.firebaseapp.com
+
+
 
 # Cloud Firestore is based on collections
 
