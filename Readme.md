@@ -24,9 +24,9 @@ firestore.collection('posts').orderBy('createdAt','desc');
 
 
 # Configuring the Firebase
-
+ ...
  import firebase from 'firebase/app'
-
+ ...
   This gives you just the barebone minimum to    get started
 
   import 'firebase/firestore'
