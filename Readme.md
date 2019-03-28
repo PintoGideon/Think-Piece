@@ -1,8 +1,7 @@
 #React with Firebase (Cloud Firestore) 
 
 
-# Link to the app deployed on Cloud Firestore:
-  https://think-piece-6bd12.firebaseapp.com
+# Developed the application in a code along workshop with Steven Kinney at Front End Masters
 
 
 
