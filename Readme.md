@@ -8,7 +8,7 @@ tree you required and all of it's subnodes
 This meant you had to be really careful about how you
 structured your data. In Firestore, queries are shallow
 
-# In Cloud Firestore, queries are shallow. You don't get all of the sub-collections by default
+In Cloud Firestore, queries are shallow. You don't get all of the sub-collections by default
 
 You still need to be mindful, but maybe less paranoid.
 
@@ -27,9 +27,9 @@ firestore.collection('posts').orderBy('createdAt','desc');
   export const firestore=firebase.firestore();
   export default firebase;
 
-# Aside- We should never fetch any data in render method, as render is a pure function and calling APIs here may cause side effects. There is another lifecycle method that is a perfect match to fetch data: componentDidMount(). When this method runs, the component was already rendered once with the render() method, but it would render again when the fetched data would be stored in the local state of the component with setState(). Afterward, the local state could be used in the render() method to display it or to pass it down as props.
+# Aside- 
+We should never fetch any data in render method, as render is a pure function and calling APIs here may cause side effects. There is another lifecycle method that is a perfect match to fetch data: componentDidMount(). When this method runs, the component was already rendered once with the render() method, but it would render again when the fetched data would be stored in the local state of the component with setState(). Afterward, the local state could be used in the render() method to display it or to pass it down as props.
 
-# snapshot is the current state of the data
 
  componentDidMount=async()=>{
      const posts=await firestore.collection('posts').get();
