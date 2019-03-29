@@ -37,7 +37,7 @@ firestore.collection('posts').orderBy('createdAt','desc');
   
 ```
 
-# Aside- 
+# Aside
 We should never fetch any data in render method, as render is a pure function and calling APIs here may cause side effects. There is another lifecycle method that is a perfect match to fetch data: componentDidMount(). When this method runs, the component was already rendered once with the render() method, but it would render again when the fetched data would be stored in the local state of the component with setState(). Afterward, the local state could be used in the render() method to display it or to pass it down as props.
 
 ```
