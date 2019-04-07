@@ -19,7 +19,11 @@ In Cloud Firestore, queries are shallow. You don't get all of the sub-collection
 
 You still need to be mindful, but maybe less paranoid.
 
+```
+
 firestore.collection('posts').orderBy('createdAt','desc');
+
+```
 
 
 
