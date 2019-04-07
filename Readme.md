@@ -6,6 +6,7 @@
 Developed the application in a code along workshop with Steven Kinney at Front End Masters
 
 
+# Notes from the workshop for future reference
 
 # Cloud Firestore is based on collections
 
