@@ -20,7 +20,7 @@ In Cloud Firestore, queries are shallow. You don't get all of the sub-collection
 
 You still need to be mindful, but maybe less paranoid.
 
-```
+```javascript
 
 firestore.collection('posts').orderBy('createdAt','desc');
 
@@ -29,13 +29,13 @@ firestore.collection('posts').orderBy('createdAt','desc');
 
 
 # Configuring the Firebase
- ```
+ ```javascript
  
  import firebase from 'firebase/app'
  
  ```
   This gives you just the barebone minimum to    get started
-```
+```javascript
   import 'firebase/firestore'
   export const firestore=firebase.firestore();
   export default firebase;
@@ -45,7 +45,7 @@ firestore.collection('posts').orderBy('createdAt','desc');
 # Aside
 We should never fetch any data in render method, as render is a pure function and calling APIs here may cause side effects. There is another lifecycle method that is a perfect match to fetch data: componentDidMount(). When this method runs, the component was already rendered once with the render() method, but it would render again when the fetched data would be stored in the local state of the component with setState(). Afterward, the local state could be used in the render() method to display it or to pass it down as props.
 
-```
+```javascript
  componentDidMount=async()=>{
      const posts=await firestore.collection('posts').get();
  }
@@ -68,7 +68,7 @@ We should never fetch any data in render method, as render is a pure function an
     
  # Adding a New Post
 
-```
+```javascript
  const docRef= await firestore.collection('posts').add(post)
  const doc=await docRef.get()
 
@@ -80,7 +80,7 @@ We should never fetch any data in render method, as render is a pure function an
 ```
 
 # Deleting a Post
-```
+```javascript
 await firestore.doc(`posts/${id}`).delete();
 
 ```
@@ -90,7 +90,7 @@ await firestore.doc(`posts/${id}`).delete();
     Instead of using get() which will get you the data each time, we will
     use onSnapshot.
 
-```
+```javascript
     firestore.collection('posts').onSnapshot(snapshot=>{
       const posts=snapshot.docs.map(doc=>({
           id:doc.id,
@@ -105,7 +105,7 @@ await firestore.doc(`posts/${id}`).delete();
 
 # Cloud Firestore rules always follow this structure
 
-```
+```javascript
 
 service cloud.firestore{
 match /databases/{database}/documents {
@@ -135,7 +135,7 @@ document
 # Authentication
 
 # Signup
-```
+```javascript
 
 firebase.auth().createUserWithEmailAndPassword(email,password).catch(error=>{
 console.error("Error")
@@ -144,7 +144,7 @@ console.error("Error")
 ```
 
 # SignIn
-```
+```javascript
 
 firebase.auth().signInWithEmailAndPassword(email,password).catch(error=>{
 console.error("Error");
@@ -161,7 +161,7 @@ this.unsubscribeFromAuth=auth.onAuthStateChanged(user=>{
 
 # SignOut
 
-```
+```javascript
 
 firebase.auth().signOut().the(function(){
 //Sign out successfull
@@ -208,43 +208,43 @@ If you've used the Firebase Realtime Database, these paths may seem very familia
 In order to upload or download files, delete files, or get or update metadata, you must create a reference to the file you want to operate on. A reference can be thought of as a pointer to a file in the cloud. References are lightweight, so you can create as many as you need, and they are also reusable for multiple operations.
 
 You can create a reference to a location lower in the tree, say 'images/space.jpg' by using the child() method.
-```
+```javascript
 
 var imagesRef=storageRef.child('images');
 
 ```
 # Points to the root reference
-```
+```javascript
 var storageRef = firebase.storage().ref();
 
 ```
 # Points to 'images'
-```
+```javascript
 var imagesRef = storageRef.child('images');
 
 ```
 # Points to 'images/space.jpg'
 # Note that you can use variables to create child values
 
-```
+```javascript
 var fileName = 'space.jpg';
 var spaceRef = imagesRef.child(fileName);
 
 ```
 # File path is 'images/space.jpg'
-```
+```javascript
 var path = spaceRef.fullPath
 
 ```
 # File name is 'space.jpg'
 
-```
+```javascript
 var name = spaceRef.name
 
 ```
 # Points to 'images'
 
-```
+```javascriptt
 var imagesRef = spaceRef.parent;
 
 ```
@@ -253,7 +253,7 @@ this route information and pass it in as props to the given component
 
 
 # Deploying with the Firebase CLI
-``` Node.js
+``` javascript
 
 npm install -g firebase-tools firebase-admin
 firebase login
