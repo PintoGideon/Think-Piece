@@ -4,7 +4,6 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const config = {
-	apiKey: 'AIzaSyCETFxDYKuMCWBQuX5tTlNin49fM8CoCHE',
 	authDomain: 'think-piece-6bd12.firebaseapp.com',
 	databaseURL: 'https://think-piece-6bd12.firebaseio.com',
 	projectId: 'think-piece-6bd12',
