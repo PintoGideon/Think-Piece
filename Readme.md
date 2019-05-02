@@ -10,7 +10,7 @@ Developed the application in a code along workshop with Steven Kinney at Front E
 
 # Cloud Firestore is based on collections
 
-In the Real time database, you got whatever node of the
+In the Real time database, you get whatever node of the
 tree you required and all of it's subnodes
 
 This meant you had to be really careful about how you
